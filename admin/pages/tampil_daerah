@@ -1,0 +1,26 @@
+<?php
+	$no     = 1;
+	$query  = "SELECT * FROM daerah";
+	$result = mysqli_query($conn, $query);
+
+	while ($row = mysqli_fetch_assoc($result))
+	{
+		extract($row);
+
+		echo '<tr>';
+		echo '<td>' . $no++ . '</td>';
+		echo '<td>' . $kd_daerah . '</td>';
+		echo '<td>' . $nama_daerah . '</td>';
+		echo '<td>';
+		echo '<a href="?page=daerahubah&ubah=1&id=' . sha1($kd_daerah) . '" class="btn btn-info">';
+		echo 'Ubah';
+		echo '</a> - ';
+		echo '<a href="?page=daerah&hapus=1&id=' . sha1($kd_daerah) . '" class="btn btn-danger btn-sm"';
+		echo ' onclick="return confirm(\'Apakah anda yakin ingin menghapus Daerah ' . $nama_daerah . ' ?\');">';
+		echo 'Hapus';
+		echo '</a>';
+		echo '</td>';
+		echo '</tr>';
+
+	}
+?>
